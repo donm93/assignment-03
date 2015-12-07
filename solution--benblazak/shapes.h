@@ -21,17 +21,19 @@ class Shape {
 
 // ----------------------------------------------------------------------------
 
-class Rectangle : public Shape {
-    private:
-        Point center;
-        float dx;
-        float dy;
+class Rectangle : public Shape{
 
-    public:
-        Rectangle(Point center = Point(), float dx = 0, float dy = 0);
+	public:
+		Rectangle(float width, float length);
+		float get_area();
+		float get_perimeter();
 
-        bool contains(const Point & p) const;
+	private:
+		float width, length;
+
 };
+
+#endif 
 
 class Square : public Rectangle {
     public:
