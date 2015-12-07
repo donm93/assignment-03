@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- * Copyright &copy; 2015 Ben Blazak <bblazak@fullerton.edu>
+ * Copyright &copy; 2015 Dong Kim Ben Blazak <donm93@fullerton.edu>
  * Released under the [MIT License] (http://opensource.org/licenses/MIT)
  * ------------------------------------------------------------------------- */
 
@@ -13,30 +13,37 @@
 
 #include "point.h"
 
-class Shape {
-    public:
-        virtual ~Shape() {}
-        virtual bool contains(const Point & p) const = 0;  // pure virtual
+#ifndef SHAPE_H
+#define SHAPE_H
+
+class Shape{	
+
+	public:
+		Shape();
+		float get_area();
+
+	private:
+		float area, perimeter;
+
 };
+
+#endif 
 
 // ----------------------------------------------------------------------------
 
-class Rectangle : public Shape {
-    private:
-        Point center;
-        float dx;
-        float dy;
+class Rectangle : public Shape{
 
-    public:
-        Rectangle(Point center = Point(), float dx = 0, float dy = 0);
+	public:
+		Rectangle(float width, float length);
+		float get_area();
+		float get_perimeter();
 
-        bool contains(const Point & p) const;
+	private:
+		float width, length;
+
 };
 
-class Square : public Rectangle {
-    public:
-        Square(Point center = Point(), float side = 0);
-};
+#endif 
 
 // ----------------------------------------------------------------------------
 
