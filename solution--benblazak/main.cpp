@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- * Copyright &copy; 2015 Ben Blazak <bblazak@fullerton.edu>
+ * Copyright &copy; 2015 Dong Kim <donm93@fullerton.edu>
  * Released under the [MIT License] (http://opensource.org/licenses/MIT)
  * ------------------------------------------------------------------------- */
 
@@ -24,15 +24,7 @@ using std::endl;
 /**
  * A function to draw the `Shape`s in `s` in a terminal.
  *
- * Arguments:
- * - `count`: The number of `Shape`s in `s`.
- * - `s`: An array containing pointers to each `Shape` to draw.
- *
- * Notes:
- * - A terminal window is typically 80 columns wide by 25 lines high.
- * - The width:height aspect ratio of a terminal character is approximately
- *   1:1.9.
- */
+
 void draw(const int count, const Shape * const s[]) {
     const float xPixels = 80;
     const float yPixels = 25;
@@ -74,23 +66,20 @@ void draw(const int count, const Shape * const s[]) {
 
 int main() {
     const int frames = 40;
-    const int frameSleep = 70;  // milliseconds
+    const int frameSleep = 70; 
 
-    // for each frame
+  
     for (float f = 0; f < frames; f++) {
-        // create some shapes
+       
         Rectangle r( Point(5+f,5), 2, 8 );
         Square    s( Point(50-(f/2),5+(f/2)), 7 );
         Ellipse   e( Point(10-(f/3),35+(f/3)), Point(25-(f/3),35+(f/3)), 22+f );
         Circle    c( Point(50+(f/5),35), 15 );
 
-        // put pointers to them in an array
         Shape * shapes[] = { &r, &s, &e, &c, };
 
-        // draw the shapes in the terminal
         draw( sizeof(shapes) / sizeof(Shape *), shapes );
 
-        // wait before drawing the next frame
         std::this_thread::sleep_for(std::chrono::milliseconds(frameSleep));
     }
 
